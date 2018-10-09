@@ -30,10 +30,10 @@ class CategoriaController extends Controller
     function editar(Request $request)
     {
         $categoria = Categoria::findOrFail($request->id);
-        return view('categorias.edit', compact('categoria', 'id'));
+        return view('categorias.edit', compact(['categoria']));
     }
 
-    function salvar(Request $request) {
+    function salvarEdicao(Request $request) {
         $categoria = Categoria::findOrFail($request->id);
         $categoria->nome = $request->input('nome');
         $categoria->save();

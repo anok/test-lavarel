@@ -9,7 +9,7 @@
 						<div class="card-body table-full-width table-responsive">
 							<div class="col-md-12">
 								Editando categoria id: {{ $categoria->id }}
-								<form method="POST" action="{{ action('CategoriaController@editar')}}">
+								<form method="POST" action="{{ action('CategoriaController@salvarEdicao')}}">
 									 @csrf
 									<div class="form-group">
 										<label>Nome</label>
