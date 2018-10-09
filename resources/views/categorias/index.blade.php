@@ -11,6 +11,16 @@
 								<div class="col-6">
 									<h4 class="card-title">Categorias</h4>
 									<p class="card-category">Veja a lista de todos os categorias abaixo.</p>
+									@if (\Session::has('success'))
+      									<div class="alert alert-success">
+        									<p>{{ \Session::get('success') }}</p>
+      									</div><br />
+     								@endif
+     								@if (\Session::has('danger'))
+      									<div class="alert alert-danger">
+        									<p>{{ \Session::get('danger') }}</p>
+      									</div><br />
+     								@endif
 								</div>
 								<div class="col-6 text-right">
 									<a href="{{ route('categoria.adicionar') }}" class="btn btn-info btn-fill pull-right">Adicionar</a>
@@ -26,17 +36,17 @@
 									<th></th>
 								</thead>
 								<tbody>
-									@for($i=0; $i<10; $i++)
+									@foreach ($categorias as $categoria)
 										<tr>
-											<td>1</td>
-											<td>10/10/2018 10:20:43</td>
-											<td>Categoria 1</td>
+											<td>{{ $categoria->id }}</td>
+											<td>{{ $categoria->created_at }}</td>
+											<td>{{ $categoria->nome }}</td>
 											<td>
-												<a href="{{ route('categoria.editar') }}" class="btn btn-secondary btn-xs btn-fill">Editar</a>
-												<a href="" class="btn btn-danger btn-xs btn-fill">Apagar</a>
+												<a href="{{ action('CategoriaController@editar', ['id' => $categoria->id]) }}" class="btn btn-secondary btn-xs btn-fill">Editar</a>
+												<a href="{{ action('CategoriaController@deletar', ['id' => $categoria->id]) }}" class="btn btn-danger btn-xs btn-fill">Apagar</a>
 											</td>
 										</tr>
-									@endfor
+									@endforeach
 								</tbody>
 							</table>
 						</div>
