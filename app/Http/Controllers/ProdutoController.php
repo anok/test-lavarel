@@ -38,12 +38,18 @@ class ProdutoController extends Controller
     }
 
     function salvarEdicao(Request $request) {
-        $produto = Produto::findOrFail($request->id);
+        $produto = Produto::findOrFail($request->input('id'));
         $produto->nome = $request->input('nome');
         $produto->valor = (float) $request->input('valor');
         $produto->save();
         $produto->categorias()->sync($request->input('categoriasMarcadas'));
 
         return redirect('produtos')->with('success', 'O produto foi editado!');
+    }
+
+    function deletar(Request $request) {
+        $produto = Produto::findOrFail($request->input('id'));
+        $produto->delete();
+        return redirect('produtos')->with('danger', 'O produto foi deletado!');
     }
 }

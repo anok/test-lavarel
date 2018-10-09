@@ -7,11 +7,11 @@ Route::get('/produtos/adicionar', ['uses' => 'ProdutoController@adicionar', 'as'
 Route::get('/produtos/editar', ['uses' => 'ProdutoController@editar', 'as' => 'produto.editar']);
 Route::post('/produtos/gravar', ['uses' => 'ProdutoController@gravar', 'as' => 'produto.gravar']);
 Route::post('/produtos/editar', ['uses' => 'ProdutoController@salvarEdicao', 'as' => 'produto.salvarEdicao']);
-
+Route::delete('/produtos/deletar', ['uses' => 'ProdutoController@deletar', 'as' => 'produto.deletar']);
 
 Route::get('/categorias', ['uses' => 'CategoriaController@index', 'as' => 'categoria']);
 Route::get('/categorias/adicionar', ['uses' => 'CategoriaController@adicionar', 'as' => 'categoria.adicionar']);
 Route::post('/categorias/gravar', ['uses' => 'CategoriaController@gravar', 'as' => 'categoria.gravar']);
 Route::get('/categorias/editar', ['uses' => 'CategoriaController@editar', 'as' => 'categoria.editar']);
-Route::get('/categorias/deletar', ['uses' => 'CategoriaController@deletar', 'as' => 'categoria.deletar']);
+Route::delete('/categorias/deletar', ['uses' => 'CategoriaController@deletar', 'as' => 'categoria.deletar']);
 Route::post('/categorias/editar', ['uses' => 'CategoriaController@salvarEdicao', 'as' => 'categoria.salvarEdicao']);

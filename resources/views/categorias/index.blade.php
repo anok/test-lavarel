@@ -43,7 +43,10 @@
 											<td>{{ $categoria->nome }}</td>
 											<td>
 												<a href="{{ action('CategoriaController@editar', ['id' => $categoria->id]) }}" class="btn btn-secondary btn-xs btn-fill">Editar</a>
-												<a href="{{ action('CategoriaController@deletar', ['id' => $categoria->id]) }}" class="btn btn-danger btn-xs btn-fill">Apagar</a>
+												<form method="POST" action="{{ action('CategoriaController@deletar', ['id' => $categoria->id]) }}">
+													@csrf
+													@method('DELETE')
+													<button class="btn btn-danger btn-xs btn-fill">Apagar</button>
 											</td>
 										</tr>
 									@endforeach

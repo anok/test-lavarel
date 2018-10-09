@@ -16,6 +16,11 @@
         									<p>{{ \Session::get('success') }}</p>
       									</div><br />
      								@endif
+     								@if (\Session::has('danger'))
+      									<div class="alert alert-danger">
+        									<p>{{ \Session::get('danger') }}</p>
+      									</div><br />
+     								@endif
 								</div>
 								<div class="col-6 text-right">
 									<a href="{{ route('produto.adicionar') }}" class="btn btn-info btn-fill pull-right">Adicionar</a>
@@ -45,7 +50,11 @@
 											</td>
 											<td>
 												<a href="{{ action('ProdutoController@editar', ['id' => $produto->id]) }}" class="btn btn-secondary btn-xs btn-fill">Editar</a>
-												<a href="" class="btn btn-danger btn-xs btn-fill">Apagar</a>
+												<form method="POST" action="{{ action('ProdutoController@deletar', ['id' => $produto->id]) }}">
+													@csrf
+													@method('DELETE')
+													<button class="btn btn-danger btn-xs btn-fill">Apagar</button>
+												</form>
 											</td>
 										</tr>
 									@endforeach
