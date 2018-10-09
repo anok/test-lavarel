@@ -11,6 +11,11 @@
 								<div class="col-6">
 									<h4 class="card-title">Produtos</h4>
 									<p class="card-category">Veja a lista de todos os produtos abaixo.</p>
+									@if (\Session::has('success'))
+      									<div class="alert alert-success">
+        									<p>{{ \Session::get('success') }}</p>
+      									</div><br />
+     								@endif
 								</div>
 								<div class="col-6 text-right">
 									<a href="{{ route('produto.adicionar') }}" class="btn btn-info btn-fill pull-right">Adicionar</a>
@@ -28,19 +33,22 @@
 									<th></th>
 								</thead>
 								<tbody>
-									@for($i=0; $i<10; $i++)
+									@foreach ($produtos as $produto)
 										<tr>
-											<td>1</td>
-											<td>10/10/2018 10:20:43</td>
-											<td>Produto 1</td>
-											<td>R$ 300,00</td>
-											<td>Categoria 1</td>
+											<td>{{$produto->id}}</td>
+											<td>{{$produto->created_at}}</td>
+											<td>{{$produto->nome}}</td>
+											<td>{{$produto->valor}}</td>
+											<td>@foreach ($produto->categorias()->get() as $categoria)
+													{{ $categoria->nome }} 
+												@endforeach
+											</td>
 											<td>
-												<a href="{{ route('produto.editar') }}" class="btn btn-secondary btn-xs btn-fill">Editar</a>
+												<a href="{{ action('ProdutoController@editar', ['id' => $produto->id]) }}" class="btn btn-secondary btn-xs btn-fill">Editar</a>
 												<a href="" class="btn btn-danger btn-xs btn-fill">Apagar</a>
 											</td>
 										</tr>
-									@endfor
+									@endforeach
 								</tbody>
 							</table>
 						</div>
